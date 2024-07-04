@@ -23,12 +23,6 @@ const userSchema = new mongoose.Schema(
             required:true,
             enum:["male", "female"],
         },
-        phoneNumber:{
-            type:Number,
-            required:true,
-            unique:true,
-            maxlength:10,
-        },
         emailAddress:{
             type:String,
             required:true,

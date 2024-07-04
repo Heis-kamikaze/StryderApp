@@ -13,7 +13,7 @@ config()
 
 // Initialize middleware
 const app = express();
-app.use(json());
+app.use(express.json());
 app.use(cors({ origin: true }));
 app.use(urlencoded({ extended: true }));
   
