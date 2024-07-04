@@ -1,18 +1,21 @@
 // Package imports
 import express, { json, urlencoded } from 'express';
 import cors from 'cors';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 // Local imports
 import authRoutes from "./routes/auth.routes.js"
+import messageRoutes from "./routes/message.routes.js"
 import connectToMongoDB from './database/mongoDBconnect.js';
 
 // Environmental variables
 const PORT = process.env.PORT || 3000;
-config()
+dotenv.config()
 
 // Initialize middleware
 const app = express();
+app.use(cookieParser())
 app.use(express.json());
 app.use(cors({ origin: true }));
 app.use(urlencoded({ extended: true }));
@@ -22,6 +25,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+app.use('/api/messages', messageRoutes)
 
 
 //Set port for the server
