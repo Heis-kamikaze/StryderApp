@@ -2,7 +2,7 @@ import Message from "./Message"
 
 const MessageList = () => {
   return (
-    <div className="px-4 flex-1 overflow-auto">
+    <div className="flex-1 overflow-auto">
         <Message />
         <Message />
         <Message />
