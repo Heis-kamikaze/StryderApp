@@ -11,9 +11,10 @@ import userRoutes from "./routes/user.routes.js"
 
 import connectToMongoDB from './database/mongoDBconnect.js';
 
-// Environmental variables
-const PORT = process.env.PORT || 3000;
 dotenv.config()
+
+// Environmental variables
+const PORT = process.env.PORT;
 
 // Initialize middleware
 const app = express();
