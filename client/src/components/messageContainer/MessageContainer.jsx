@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import useGetConversations from "../../hooks/useGetConversations";
 import useConversation from "../../zustand/useConversation";
 import MessageInput from "./MessageInput";
 import MessageList from "./MessageList";
