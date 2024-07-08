@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 
 const Sidebar = () => {
   return (
-    <div className="h-screen sm:w-auto md:w-auto overflow-auto">
+    <div className="h-screen sm:w-auto md:w-auto overflow-y-auto">
       <div className="border-r border-stone-800 w-96">
         <SearchBar />
         <div className="divider px3"></div>

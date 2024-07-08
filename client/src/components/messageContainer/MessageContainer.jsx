@@ -7,7 +7,7 @@ const MessageContainer = () => {
 
   return (
     <>
-      <div className="overflow-y-auto flex-1">
+      <div className="overflow-y-auto flex-1 hidden sm:block md:block">
         { noChatSelected ? (
           <NoChatSelected />
         ) : (
