@@ -4,7 +4,7 @@ import Conversation from "./Conversation";
 const ConvoList = () => {
   const { loading, conversations } = useGetConversations();
   return (
-    <div className="py-2 mx-3 flex flex-col overflow-auto">
+    <div className="py-2 mx-3 flex flex-col overflow-auto w-auto">
       {
         conversations.map(
           (conversation, idx) => (
