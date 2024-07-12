@@ -23,9 +23,9 @@ const SearchBar = () => {
   }
 
   return (
-    <form className="items-center gap-2 flex pt-2" onSubmit={handleSubmit}>
-        <input type="search" placeholder="Search..." className="input input-bordered rounded-full" value={search} onChange={(e) => setSearch(e.target.value)}/>
-        <button type="submit" className={`btn btn-circle glass text-white ${search === "" ? "disabled" : ""}`}>
+    <form className="items-center gap-2 flex p-auto" onSubmit={handleSubmit}>
+        <input type="search" placeholder="Search for your mutuals..." className="input input-bordered rounded-full" value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <button type="submit" className={`btn btn-circle glass text-white ${search === "" ? "disabled" : "bg-blue-700"}`}>
            < FaSearch className={`w-4 h-4 ${search === "" ? "text-gray-500" : ""}`}/>
         </button>
         

@@ -142,7 +142,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const logout = async (req, res) => {
+export const logout = (req, res) => {
   try {
     // Clear the cookie and set maxAge to 0 to make it expire immediately
     res.cookie("jwt", "", { maxAge: 0 });

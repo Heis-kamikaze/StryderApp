@@ -4,10 +4,15 @@ import MessageInput from "./MessageInput";
 import MessageList from "./MessageList";
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../context/AuthContext";
+import { useSocketContext } from "../../context/SocketContext";
 
-const MessageContainer = () => {
+const MessageContainer = (conversation) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
- 
+
+  const isSelected = selectedConversation?._id === conversation._id;
+
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(conversation._id);
 
   useEffect(
     () => 
@@ -18,13 +23,15 @@ const MessageContainer = () => {
 
   return (
     <>
-      <div className="overflow-y-auto flex-1 hidden sm:block md:block">
+      
         {!selectedConversation ? (
           <NoChatSelected />
         ) : (
           <>
-            <div className="bg-black pl-4 py-2 mb-2 flex align-middle items-center w-full">
-              <div className="avatar">
+           <div className="flex flex-col w-full">
+           <div className="bg-black pl-4 py-2 mb-2 flex align-middle items-center w-full">
+             <div className="flex align-middle items-center">
+             <div className="avatar">
                 <div className="w-12 rounded-full">
                   <img
                     src={selectedConversation.profilePic}
@@ -32,18 +39,25 @@ const MessageContainer = () => {
                   />
                 </div>
               </div>
-              <div className="pl-4">
+              <div className="pl-4 flex flex-col">
                 <span className="text-white font-bold">
                   {selectedConversation.username}
                 </span>
+                <span className={`${isOnline&&isSelected ? "text-blue-400" : "text-gray-500"}`}>
+                  {isOnline ? "Online" : "Offline"}
+                </span>
               </div>
+             </div>
+             <div>
+
+             </div>
             </div>
 
             <MessageList />
             <MessageInput />
+           </div>
           </>
         )}
-      </div>
     </>
   );
 };

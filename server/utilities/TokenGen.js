@@ -9,7 +9,7 @@ const generateTokenAndSetCookie = (userId, res) => {
         httpOnly: true, // to prevent cross site scripting attacks
         maxAge: 15 * 24 * 60 * 60 * 1000,
         sameSite: "Strict",
-        secure: process.env.Node_ENV !== "development"
+        secure: process.env.NODE_ENV !== "development"
    })
 }
 
