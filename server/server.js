@@ -3,6 +3,7 @@ import express, { json, urlencoded } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 // Local imports
 import authRoutes from "./routes/auth.routes.js"
@@ -10,6 +11,7 @@ import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
 
 import connectToMongoDB from './database/mongoDBconnect.js';
+import { app, server } from './socket/socket.js';
 
 dotenv.config()
 
@@ -17,7 +19,7 @@ dotenv.config()
 const PORT = process.env.PORT;
 
 // Initialize middleware
-const app = express();
+
 app.use(cookieParser())
 app.use(express.json());
 app.use(cors({ origin: true }));
@@ -33,7 +35,7 @@ app.use('/api/users', userRoutes)
 
 
 //Set port for the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server active... Running on port ${PORT} ...`)
 })

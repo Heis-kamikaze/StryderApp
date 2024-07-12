@@ -1,3 +1,4 @@
+import { getReceiverSocketId, io } from '../socket/socket.js';
 import Conversation from './../models/conversation.model.js';
 import Message from './../models/message.model.js';
 export const sendMessage = async (req, res) => {
@@ -31,6 +32,12 @@ export const sendMessage = async (req, res) => {
         
         // This will make the two save functions to run in parallel and save time
         await Promise.all([conversation.save(), newMessage.save()])
+
+        const rcvrSocketId = getReceiverSocketId(receiverId);
+        if(rcvrSocketId) {
+            // Emit to a specific ID only
+            io.to(rcvrSocketId).emit("newMessage", newMessage)
+        }
 
         res.status(201).json(newMessage)
         
