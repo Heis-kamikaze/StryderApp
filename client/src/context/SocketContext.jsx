@@ -14,10 +14,11 @@ export const SocketProvider = ({ children }) => {
     const [socket, setSocket]= useState(null);
     const [onlineUsers, setOnlineUsers]= useState([]);
     const {AuthUser} = useAuthContext();
-
+    const socketUrl = process.env.REACT_APP_API_URL || window.location.origin;
+    
     useEffect(() => {
         if(AuthUser) {
-            const socket = io("http://localhost:5000", {
+            const socket = io(socketUrl, {
                 query:{
                     // stores the authenticated users id to be used in the socket.js file
                     userId: AuthUser._id,
@@ -47,7 +48,7 @@ export const SocketProvider = ({ children }) => {
                 setSocket(null)
             }
         }
-    }, [AuthUser, socket])
+    }, [AuthUser])
 
     return (
         <SocketContext.Provider value={{socket,  onlineUsers}}>
